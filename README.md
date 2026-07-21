@@ -156,4 +156,4 @@ manual_testing(news)
 
 ## License
 
-This project can be shared under the MIT License. Update this section if your repository uses a different license.
+This project can be shared under the MIT License. 
