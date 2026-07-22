@@ -149,6 +149,9 @@ manual_testing(news)
 - Make sure the dataset file paths match your local setup if not using Google Colab.
 - For production use, convert the notebook into modular Python scripts and save the trained pipeline.
 
+## Website
+- [Fake News Detector](https://fake-news-detection-oxfv.vercel.app/)
+
 ## Authors
 
 - [Subham Nayak](https://github.com/Subham73-cmd)
