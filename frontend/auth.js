@@ -1,414 +1,182 @@
-/*
-=================================
-API URLS
-=================================
-*/
+// Local FastAPI
+// const API_URL = "http://localhost:8000/predict";
 
-const LOGIN_API =
-    "http://localhost:8080/api/auth/login";
+// Vercel Backend
+const API_URL = "https://fake-news-detection-neon-nu.vercel.app/predict";
 
-const REGISTER_API =
-    "http://localhost:8080/api/auth/register";
+async function analyzeNews() {
 
-/*
-=================================
-PASSWORD TOGGLE
-=================================
-*/
+    const newsText = document.getElementById("newsText").value.trim();
 
-const togglePassword =
-    document.getElementById(
-        "togglePassword"
-    );
+    const loader = document.getElementById("loader");
 
-if (togglePassword) {
+    const prediction = document.getElementById("predictionText");
 
-    togglePassword.addEventListener(
-        "click",
-        () => {
+    const confidence = document.getElementById("confidence");
 
-            const passwordField =
-                document.getElementById(
-                    "password"
-                );
+    const sentiment = document.getElementById("sentiment");
 
-            if (
-                passwordField.type ===
-                "password"
-            ) {
+    const credibility = document.getElementById("credibility");
 
-                passwordField.type =
-                    "text";
+    const highlightedText =
+        document.getElementById("highlightedText");
 
-                togglePassword.innerHTML =
-                    "🙈";
+    if (!newsText) {
 
-            } else {
+        alert("Please enter news content.");
 
-                passwordField.type =
-                    "password";
-
-                togglePassword.innerHTML =
-                    "👁️";
-            }
-        }
-    );
-}
-
-/*
-=================================
-PASSWORD STRENGTH
-=================================
-*/
-
-const passwordInput =
-    document.getElementById(
-        "password"
-    );
-
-if (passwordInput) {
-
-    passwordInput.addEventListener(
-        "input",
-        () => {
-
-            const password =
-                passwordInput.value;
-
-            const strengthBar =
-                document.getElementById(
-                    "strengthBar"
-                );
-
-            const strengthText =
-                document.getElementById(
-                    "strengthText"
-                );
-
-            if (
-                !strengthBar ||
-                !strengthText
-            ) return;
-
-            let score = 0;
-
-            if (
-                password.length >= 8
-            ) score++;
-
-            if (
-                /[A-Z]/.test(password)
-            ) score++;
-
-            if (
-                /[0-9]/.test(password)
-            ) score++;
-
-            if (
-                /[^A-Za-z0-9]/.test(
-                    password
-                )
-            ) score++;
-
-            switch(score){
-
-                case 1:
-                    strengthBar.style.width =
-                        "25%";
-
-                    strengthBar.style.background =
-                        "#ef4444";
-
-                    strengthText.innerHTML =
-                        "Weak";
-
-                    break;
-
-                case 2:
-                    strengthBar.style.width =
-                        "50%";
-
-                    strengthBar.style.background =
-                        "#f59e0b";
-
-                    strengthText.innerHTML =
-                        "Medium";
-
-                    break;
-
-                case 3:
-                    strengthBar.style.width =
-                        "75%";
-
-                    strengthBar.style.background =
-                        "#3b82f6";
-
-                    strengthText.innerHTML =
-                        "Good";
-
-                    break;
-
-                case 4:
-                    strengthBar.style.width =
-                        "100%";
-
-                    strengthBar.style.background =
-                        "#22c55e";
-
-                    strengthText.innerHTML =
-                        "Strong";
-
-                    break;
-
-                default:
-                    strengthBar.style.width =
-                        "0%";
-
-                    strengthText.innerHTML =
-                        "Password Strength";
-            }
-        }
-    );
-}
-
-/*
-=================================
-REGISTER
-=================================
-*/
-
-const registerForm =
-    document.getElementById(
-        "registerForm"
-    );
-
-if (registerForm) {
-
-    registerForm.addEventListener(
-        "submit",
-        async (e) => {
-
-            e.preventDefault();
-
-            const name =
-                document.getElementById(
-                    "name"
-                ).value;
-
-            const email =
-                document.getElementById(
-                    "email"
-                ).value;
-
-            const password =
-                document.getElementById(
-                    "password"
-                ).value;
-
-            const confirmPassword =
-                document.getElementById(
-                    "confirmPassword"
-                ).value;
-
-            const message =
-                document.getElementById(
-                    "message"
-                );
-
-            if (
-                password !==
-                confirmPassword
-            ) {
-
-                message.innerHTML =
-                    "Passwords do not match";
-
-                return;
-            }
-
-            try {
-
-                const response =
-                    await fetch(
-                        REGISTER_API,
-                        {
-
-                        method:"POST",
-
-                        headers:{
-                            "Content-Type":
-                            "application/json"
-                        },
-
-                        body:JSON.stringify({
-
-                            name:name,
-                            email:email,
-                            password:password
-
-                        })
-
-                    });
-
-                const data =
-                    await response.json();
-
-                message.innerHTML =
-                    "Registration Successful";
-
-                setTimeout(() => {
-
-                    window.location.href =
-                        "login.html";
-
-                },1500);
-
-            } catch(error){
-
-                console.error(error);
-
-                message.innerHTML =
-                    "Registration Failed";
-            }
-        }
-    );
-}
-
-/*
-=================================
-LOGIN
-=================================
-*/
-
-const loginForm =
-    document.getElementById(
-        "loginForm"
-    );
-
-if (loginForm) {
-
-    loginForm.addEventListener(
-        "submit",
-        async (e) => {
-
-            e.preventDefault();
-
-            const email =
-                document.getElementById(
-                    "email"
-                ).value;
-
-            const password =
-                document.getElementById(
-                    "password"
-                ).value;
-
-            const message =
-                document.getElementById(
-                    "message"
-                );
-
-            try {
-
-                const response =
-                    await fetch(
-                        LOGIN_API,
-                        {
-
-                        method:"POST",
-
-                        headers:{
-                            "Content-Type":
-                            "application/json"
-                        },
-
-                        body:JSON.stringify({
-
-                            email:email,
-                            password:password
-
-                        })
-
-                    });
-
-                const data =
-                    await response.json();
-
-                if(data.token){
-
-                    localStorage.setItem(
-                        "token",
-                        data.token
-                    );
-
-                    localStorage.setItem(
-                        "userEmail",
-                        email
-                    );
-
-                    message.innerHTML =
-                        "Login Successful";
-
-                    setTimeout(() => {
-
-                        window.location.href =
-                            "dashboard.html";
-
-                    },1000);
-
-                }else{
-
-                    message.innerHTML =
-                        "Invalid Credentials";
-                }
-
-            } catch(error){
-
-                console.error(error);
-
-                message.innerHTML =
-                    "Login Failed";
-            }
-        }
-    );
-}
-
-/*
-=================================
-LOGOUT
-=================================
-*/
-
-function logout(){
-
-    localStorage.removeItem(
-        "token"
-    );
-
-    localStorage.removeItem(
-        "userEmail"
-    );
-
-    window.location.href =
-        "login.html";
-}
-
-/*
-=================================
-JWT CHECK
-=================================
-*/
-
-function checkAuth(){
-
-    const token =
-        localStorage.getItem(
-            "token"
-        );
-
-    if(!token){
-
-        window.location.href =
-            "login.html";
+        return;
     }
+
+    // Highlight suspicious words
+
+    const suspiciousWords = [
+        "shocking",
+        "breaking",
+        "miracle",
+        "secret",
+        "exclusive",
+        "viral",
+        "unbelievable",
+        "guaranteed"
+    ];
+
+    let highlighted = newsText;
+
+    suspiciousWords.forEach(word => {
+
+        const regex = new RegExp(`\\b${word}\\b`, "gi");
+
+        highlighted = highlighted.replace(
+            regex,
+            `<span class="fake-highlight">$&</span>`
+        );
+    });
+
+    highlightedText.innerHTML = highlighted;
+
+    loader.classList.remove("hidden");
+
+    prediction.innerHTML = "⏳ Analyzing...";
+
+    confidence.innerHTML = "";
+
+    sentiment.innerHTML = "";
+
+    credibility.innerHTML = "";
+
+    try {
+
+        const response = await fetch(API_URL, {
+
+            method: "POST",
+
+            headers: {
+
+                "Content-Type": "application/json"
+
+            },
+
+            body: JSON.stringify({
+
+                text: newsText
+
+            })
+
+        });
+
+        if (!response.ok) {
+
+            throw new Error("Server Error");
+
+        }
+
+        const data = await response.json();
+
+        if (data.consensus_label === "Fake News") {
+
+            prediction.innerHTML = "🚨 FAKE NEWS";
+
+            prediction.style.color = "#ff4d4d";
+
+        } else {
+
+            prediction.innerHTML = "✅ REAL NEWS";
+
+            prediction.style.color = "#28a745";
+
+        }
+
+        confidence.innerHTML =
+            "Fake Votes : " + data.fake_votes;
+
+        sentiment.innerHTML =
+            "Real Votes : " + data.real_votes;
+
+        credibility.innerHTML =
+            "Models Used : " + data.votes.length;
+
+        saveToLocalHistory(data);
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        prediction.innerHTML = "❌ Backend Connection Failed";
+
+        prediction.style.color = "red";
+
+        confidence.innerHTML = "";
+
+        sentiment.innerHTML = "";
+
+        credibility.innerHTML = "";
+
+    }
+
+    finally {
+
+        loader.classList.add("hidden");
+
+    }
+
+}
+
+function saveToLocalHistory(data) {
+
+    let history =
+        JSON.parse(localStorage.getItem("newsHistory")) || [];
+
+    history.push({
+
+        date: new Date().toLocaleString(),
+
+        prediction: data.consensus_label,
+
+        confidence:
+            Math.round(
+                (Math.max(
+                    data.fake_votes,
+                    data.real_votes
+                ) / data.votes.length) * 100
+            ),
+
+        sentiment:
+            data.consensus_label === "Real News"
+                ? "Positive"
+                : "Negative",
+
+        fakeVotes: data.fake_votes,
+
+        realVotes: data.real_votes
+
+    });
+
+    localStorage.setItem(
+        "newsHistory",
+        JSON.stringify(history)
+    );
+
 }
