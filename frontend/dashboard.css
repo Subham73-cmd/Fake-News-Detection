@@ -257,3 +257,71 @@ tbody tr:hover{
         font-size:12px;
     }
 }
+/* Sidebar buttons */
+
+.sidebar-actions{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.theme-btn{
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    background:#38bdf8;
+    color:white;
+    font-size:15px;
+}
+
+.theme-btn:hover{
+    background:#0ea5e9;
+}
+
+/* ---------- LIGHT MODE ---------- */
+
+.light-mode{
+    background:#f8fafc;
+    color:#111827;
+}
+
+.light-mode .sidebar{
+    background:#ffffff;
+    border-right:1px solid #e5e7eb;
+}
+
+.light-mode .sidebar h2{
+    color:#2563eb;
+}
+
+.light-mode .sidebar a{
+    color:#111827;
+}
+
+.light-mode .sidebar a:hover,
+.light-mode .sidebar a.active{
+    background:#dbeafe;
+}
+
+.light-mode .welcome-card,
+.light-mode .stat-card,
+.light-mode .chart-card,
+.light-mode .activity-card{
+    background:#ffffff;
+    color:#111827;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.light-mode table{
+    background:white;
+    color:#111827;
+}
+
+.light-mode thead{
+    background:#e5e7eb;
+}
+
+.light-mode tbody tr:hover{
+    background:#f3f4f6;
+}
