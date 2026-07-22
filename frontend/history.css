@@ -244,3 +244,99 @@ tbody tr:hover{
         font-size:1.5rem;
     }
 }
+/* ==========================
+   Theme Button
+========================== */
+
+.theme-btn{
+
+    background:#3b82f6;
+    color:white;
+
+    border:none;
+
+    padding:12px 18px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+.theme-btn:hover{
+
+    background:#2563eb;
+
+}
+
+/* ==========================
+   LIGHT MODE
+========================== */
+
+.light-mode{
+
+    background:#f8fafc;
+    color:#111827;
+
+}
+
+.light-mode .sidebar{
+
+    background:white;
+    border-right:1px solid #e5e7eb;
+
+}
+
+.light-mode .sidebar h2{
+
+    color:#2563eb;
+
+}
+
+.light-mode .sidebar a{
+
+    color:#111827;
+
+}
+
+.light-mode .sidebar a:hover,
+.light-mode .sidebar a.active{
+
+    background:#dbeafe;
+
+}
+
+.light-mode table{
+
+    background:white;
+    color:#111827;
+
+}
+
+.light-mode thead{
+
+    background:#e5e7eb;
+
+}
+
+.light-mode tbody tr:hover{
+
+    background:#f3f4f6;
+
+}
+
+.light-mode input,
+.light-mode select{
+
+    background:white;
+    color:#111827;
+
+    border:1px solid #d1d5db;
+
+}
+
+.light-mode .header h1{
+
+    color:#111827;
+
+}
