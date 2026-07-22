@@ -61,13 +61,21 @@
                 Analysis History
             </h1>
 
-            <button
-                class="export-btn"
-                onclick="exportCSV()">
+            <div style="display:flex;gap:12px;">
 
-                Export CSV
+    <button
+        id="themeToggle"
+        class="theme-btn">
+        🌙 Theme
+    </button>
 
-            </button>
+    <button
+        class="export-btn"
+        onclick="exportCSV()">
+        Export CSV
+    </button>
+
+</div>
 
         </div>
 
@@ -146,6 +154,7 @@
     </main>
 
     <script src="history.js"></script>
+    <script src="theme.js"></script>
 
 </body>
 
