@@ -155,6 +155,19 @@ function saveToLocalHistory(data) {
 
         prediction: data.consensus_label,
 
+        confidence:
+            Math.round(
+                (Math.max(
+                    data.fake_votes,
+                    data.real_votes
+                ) / data.votes.length) * 100
+            ),
+
+        sentiment:
+            data.consensus_label === "Real News"
+                ? "Positive"
+                : "Negative",
+
         fakeVotes: data.fake_votes,
 
         realVotes: data.real_votes
@@ -162,73 +175,8 @@ function saveToLocalHistory(data) {
     });
 
     localStorage.setItem(
-
         "newsHistory",
-
         JSON.stringify(history)
-
     );
 
 }
-
-
-// Theme Toggle
-
-const themeBtn =
-document.getElementById("themeToggle");
-
-if(themeBtn){
-
-themeBtn.addEventListener("click",()=>{
-
-document.body.classList.toggle("light-mode");
-
-if(document.body.classList.contains("light-mode")){
-
-themeBtn.innerHTML="☀️";
-
-localStorage.setItem("theme","light");
-
-}
-
-else{
-
-themeBtn.innerHTML="🌙";
-
-localStorage.setItem("theme","dark");
-
-}
-
-});
-
-}
-
-
-window.onload=()=>{
-
-const theme=localStorage.getItem("theme");
-
-if(theme==="light"){
-
-document.body.classList.add("light-mode");
-
-if(themeBtn){
-
-themeBtn.innerHTML="☀️";
-
-}
-
-}
-
-};
-
-
-document.addEventListener("keydown",(event)=>{
-
-if(event.ctrlKey && event.key==="Enter"){
-
-analyzeNews();
-
-}
-
-});
