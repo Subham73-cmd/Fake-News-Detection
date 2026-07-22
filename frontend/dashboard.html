@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | Fake News Detector</title>
+
+    <link rel="stylesheet"
+          href="dashboard.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body onload="checkAuth()">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <h2>📰 FakeNews AI</h2>
+
+        <ul>
+
+            <li>
+                <a href="index.html">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="dashboard.html"
+                   class="active">
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="history.html">
+                    History
+                </a>
+            </li>
+
+        </ul>
+
+        <button
+            class="logout-btn"
+            onclick="logout()">
+
+            Logout
+
+        </button>
+
+    </aside>
+
+    <!-- Main Content -->
+
+    <main class="main-content">
+
+        <!-- Welcome Card -->
+
+        <div class="welcome-card">
+
+            <h1>
+                Welcome Back 👋
+            </h1>
+
+            <p id="userEmail">
+
+                Loading User...
+
+            </p>
+
+        </div>
+
+        <!-- Statistics -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+
+                <h3>
+                    Total Analyses
+                </h3>
+
+                <h2 id="totalAnalyses">
+                    0
+                </h2>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>
+                    Real News
+                </h3>
+
+                <h2 id="realNews">
+                    0
+                </h2>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>
+                    Fake News
+                </h3>
+
+                <h2 id="fakeNews">
+                    0
+                </h2>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>
+                    Avg Confidence
+                </h3>
+
+                <h2 id="avgConfidence">
+                    0%
+                </h2>
+
+            </div>
+
+        </section>
+
+        <!-- Charts -->
+
+        <section class="charts">
+
+            <div class="chart-card">
+
+                <h3>
+                    Real vs Fake News
+                </h3>
+
+                <canvas id="pieChart">
+
+                </canvas>
+
+            </div>
+
+            <div class="chart-card">
+
+                <h3>
+                    Analysis Categories
+                </h3>
+
+                <canvas id="barChart">
+
+                </canvas>
+
+            </div>
+
+        </section>
+
+        <!-- Recent Activity -->
+
+        <section class="activity">
+
+            <div class="activity-card">
+
+                <h2>
+                    Recent Activity
+                </h2>
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Prediction
+                            </th>
+
+                            <th>
+                                Confidence
+                            </th>
+
+                            <th>
+                                Date
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="activityTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="auth.js"></script>
+    <script src="dashboard.js"></script>
+
+</body>
+
+</html>

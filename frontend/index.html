@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Fake News Detector</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            📰 FakeNews AI
+        </div>
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+
+            <li>
+                <a href="dashboard.html">Dashboard</a>
+            </li>
+
+            <li>
+                <a href="history.html">History</a>
+            </li>
+
+            <li>
+                <a href="login.html">Login</a>
+            </li>
+
+            <li>
+                <button id="themeToggle">
+                    🌙
+                </button>
+            </li>
+
+        </ul>
+
+    </nav>
+
+    <!-- Hero Section -->
+
+    <section class="hero">
+
+        <h1>
+            AI Powered Fake News Detection System
+        </h1>
+
+        <p>
+            Verify News • Detect Clickbait • Check Credibility
+        </p>
+
+    </section>
+
+    <!-- Analysis Section -->
+
+    <section class="analysis-container">
+
+        <!-- Search Box -->
+
+       <div class="search-card">
+
+    <span class="search-icon">🔍</span>
+
+    <input
+        type="text"
+        id="newsText"
+        placeholder="Enter news headline or paste article URL..."
+    >
+
+    <button
+        class="analyze-btn"
+        onclick="analyzeNews()">
+        Analyze
+    </button>
+
+</div>
+
+        <!-- Highlighted Content -->
+
+        <div class="card">
+
+            <h2>
+                Analyzed Content
+            </h2>
+
+            <div
+                id="highlightedText"
+                class="highlighted-text">
+
+                News content will appear here...
+
+            </div>
+
+        </div>
+
+        <!-- Result Card -->
+
+        <div class="card result-card">
+
+            <h2>
+                Analysis Result
+            </h2>
+
+            <div
+                id="loader"
+                class="loader hidden">
+            </div>
+
+            <div id="resultSection">
+
+                <h3 id="predictionText">
+                    Waiting for analysis...
+                </h3>
+
+                <p id="confidence">
+                    Confidence : --
+                </p>
+
+                <p id="sentiment">
+                    Sentiment : --
+                </p>
+
+                <p id="credibility">
+                    Credibility Score : --
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Features Section -->
+
+    <section class="features">
+
+        <div class="feature-card">
+
+            <h3>
+                Fake News Detection
+            </h3>
+
+            <p>
+                Detect fake articles using machine learning models.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <h3>
+                Fact Verification
+            </h3>
+
+            <p>
+                Validate claims against trusted sources.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <h3>
+                Sentiment Analysis
+            </h3>
+
+            <p>
+                Analyze emotional tone of news content.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <h3>
+                Source Credibility
+            </h3>
+
+            <p>
+                Measure trustworthiness of websites.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <h3>
+                Clickbait Detection
+            </h3>
+
+            <p>
+                Identify misleading headlines instantly.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <h3>
+                History Tracking
+            </h3>
+
+            <p>
+                Access all previously analyzed news.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            ©2026 Fake News Detector 
+        </p>
+
+    </footer>
+
+    <!-- JavaScript -->
+
+    <script src="api.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Analysis History</title>
+
+    <link rel="stylesheet"
+          href="history.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+</head>
+
+<body onload="loadHistory()">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <h2>📰 FakeNews AI</h2>
+
+        <ul>
+
+            <li>
+                <a href="index.html">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="dashboard.html">
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="history.html"
+                   class="active">
+                    History
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main -->
+
+    <main class="main-content">
+
+        <div class="header">
+
+            <h1>
+                Analysis History
+            </h1>
+
+            <button
+                class="export-btn"
+                onclick="exportCSV()">
+
+                Export CSV
+
+            </button>
+
+        </div>
+
+        <!-- Filters -->
+
+        <div class="filters">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search prediction..."
+                onkeyup="filterHistory()">
+
+            <select
+                id="predictionFilter"
+                onchange="filterHistory()">
+
+                <option value="">
+                    All
+                </option>
+
+                <option value="Real">
+                    Real News
+                </option>
+
+                <option value="Fake">
+                    Fake News
+                </option>
+
+            </select>
+
+        </div>
+
+        <!-- Table -->
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Prediction
+                        </th>
+
+                        <th>
+                            Confidence
+                        </th>
+
+                        <th>
+                            Sentiment
+                        </th>
+
+                        <th>
+                            Date
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="historyTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+    <script src="history.js"></script>
+
+</body>
+
+</html>
