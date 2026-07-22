@@ -2,7 +2,7 @@
 // const API_URL = "http://localhost:8000/predict";
 
 // Vercel Backend
-const API_URL = "https://YOUR-BACKEND-NAME.vercel.app/predict";
+const API_URL = "https://fake-news-detection-neon-nu.vercel.app/predict";
 
 async function analyzeNews() {
 
